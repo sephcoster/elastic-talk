@@ -1,0 +1,6 @@
+/examples
+/logstash
+/elasticsearch
+/kibana
+*.zip
+*.tar.gz

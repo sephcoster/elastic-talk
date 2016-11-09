@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Chart Magic - DC.js and D3.js</title>
+
+		<meta name="description" content="A lightning talk about things magical things">
+		<meta name="author" content="Seph Coster">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h2>{title: 'Elasticsearch'}</h2><br/>
+					<h5>A High Level, Hands-on Discussion</h5>
+					<p>Dayton Dynamic Languages Meetup - 11/9/2016</p>
+					
+					<p>
+						<small>A rather quick talk by <a href="http://sephcoster.com">Seph Coster</a> / <a href="http://twitter.com/sephcoster">@sephcoster</a></small>
+					</p>
+				</section>
+
+				<section>
+					<h2>What is Elasticsearch?</h2>
+					<ul>
+						<li class="fragment roll-in">A near-real-time application for quickly indexing and searching 'documents'</li>
+						<li class="fragment roll-in">Node / Cluster system that scales to the web</li>
+						<li class="fragment roll-in">Stores documents as an inverted index to find what you need, fast</li>
+						<li class="fragment roll-in">Stores _source data alongside the index for fast retrieval</li>
+						<li class="fragment roll-in">Apache Lucene under the hood</li>
+						<li class="fragment roll-in">First built as a recipe search, now a full-fledged company + support</li>
+					</ul>
+					<p> &nbsp;</p>
+					<p> &nbsp;</p>
+
+				</section>
+				<section>
+					<h2>What's a reverse index?</h2>
+					<img src="InvertedIndex.png" />
+				</section>
+				<section>
+					<h2>Things I like about Elasticsearch:</h2>
+					<ul>
+						<li class="fragment roll-in">REST interface for all the things</li>
+						<li class="fragment roll-in">Use with any language because HTTP (Yay!)</li>
+						<li class="fragment roll-in">It's fast and works well with JavaScript (I'm biased)</li>
+						<li class="fragment roll-in">Clients for most languages available (more on this later)</li>
+						<li class="fragment roll-in">Really easy to get up and running!</li>
+						<li class="fragment roll-in">Really powerful, and easy to extend</li>
+						<li class="fragment roll-in">Open source from the start</li>
+						<li class="fragment roll-in">Solid docs.</li>
+					</ul>
+				</section>
+				<section>
+					<h2>A few Nifty and Notable Features:</h2>
+					<ul>
+						<li class="fragment roll-in">Full Text search with Relevance</li>
+						<li class="fragment roll-in">Text analyzers (grammar, root word, pluralization, etc)</li>
+						<li class="fragment roll-in">"More Like This" Term Frequency-based Queries</li>
+						<li class="fragment roll-in">Advanced Queries with operators (fuzzy search, phoenetic, etc)</li>
+						<li class="fragment roll-in">Aggregations of all kinds (including analytics / stats)</li>
+						<li class="fragment roll-in">Geospatial Queries / Aggregations</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Why Use Elasticsearch?</h2>
+					<ul>
+						<li class="fragment roll-in">You know, for search!</li>
+						<li class="fragment roll-in">Logs / Time series capture</li>
+						<li class="fragment roll-in">Rapid filtering / counts / aggregation of data</li>
+						<li class="fragment roll-in">Big Data (or, you know, sizeable data)</li>
+						<li class="fragment roll-in">Supplement existing Big Data efforts (Spark, Kafka, etc)</li>
+						<li class="fragment roll-in">Percolation / Alerting</li>
+						<li class="fragment roll-in">Data Vizualization w/ Kibana</li>
+					</ul>
+				</section>	
+				<section>
+					<h2>Language Packs</h2>
+					<ul>
+						<li class="fragment roll-in">Python (High Level, Official): https://github.com/elastic/elasticsearch-dsl-py</li>
+						<li class="fragment roll-in">Python (Low Level, Official): https://github.com/elastic/elasticsearch-py</li>
+						<li class="fragment roll-in">Go (Community): https://olivere.github.io/elastic/</li>
+						<li class="fragment roll-in">Clojure your thing?: http://clojureelasticsearch.info/</li>
+						<li class="fragment roll-in">Java: https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/client.html</li>
+						<li class="fragment roll-in">JavaScript: https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html</li>
+					</ul>
+				</section>	
+				<section>
+					<h2>The Hard Bits</h2>
+					<ul>
+						<li class="fragment roll-in">Getting started is easy. Maturing to your business case is harder.</li>
+						<li class="fragment roll-in">A good deal of gotchas and lots of best practices to learn</li>
+						<li class="fragment roll-in">Gotcha factor is getting better but still takes time to learn the inner workings / API</li>
+						<li class="fragment roll-in">Using the API is straightforward. Getting your data ready and thinking about structure is hard.</li>
+					</ul>
+				</section>		
+				<section>
+					<h2>Let's Get Cracking!</h2>
+					<ul>
+						<li class="fragment roll-in">Download your Apps (Elasticsearch + Kibana recommended, Logstash great for ingest):
+https://www.elastic.co/products</li>
+						<li class="fragment roll-in">Install the X-Pack if you'd like and/or want to see what is offered for Enterprise</li>
+						<li class="fragment roll-in">If you'd like to ingest your own data sets, use Logstash</li>
+						<li class="fragment roll-in">Because it's the season, we'll work with the FEC example that is handily provided by Elastic: https://github.com/elastic/examples/tree/master/ElasticStack_usfec</li>
+						<li class="fragment roll-in">I've done this for you already! Hooray! </li>
+					</ul>
+				</section>				
+				
+				<section>
+					<h1>THE END</h1>
+					<h3>BY Seph Coster / github.com/sephcoster</h3>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
